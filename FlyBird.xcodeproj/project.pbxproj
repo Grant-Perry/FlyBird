@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9B32F1432BC8748400765377 /* fetchBirds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B32F1422BC8748400765377 /* fetchBirds.swift */; };
 		9BFC54782BC820A90025C060 /* FlyBirdApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFC54772BC820A90025C060 /* FlyBirdApp.swift */; };
 		9BFC547A2BC820A90025C060 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFC54792BC820A90025C060 /* ContentView.swift */; };
 		9BFC547C2BC820AA0025C060 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9BFC547B2BC820AA0025C060 /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9B32F1422BC8748400765377 /* fetchBirds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fetchBirds.swift; sourceTree = "<group>"; };
 		9BFC54742BC820A90025C060 /* FlyBird.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlyBird.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BFC54772BC820A90025C060 /* FlyBirdApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlyBirdApp.swift; sourceTree = "<group>"; };
 		9BFC54792BC820A90025C060 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -40,6 +42,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9B32F1412BC8746E00765377 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				9B32F1422BC8748400765377 /* fetchBirds.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		9BFC546B2BC820A90025C060 = {
 			isa = PBXGroup;
 			children = (
@@ -59,6 +69,7 @@
 		9BFC54762BC820A90025C060 /* FlyBird */ = {
 			isa = PBXGroup;
 			children = (
+				9B32F1412BC8746E00765377 /* Helpers */,
 				9BFC54872BC820CF0025C060 /* Data */,
 				9BFC54862BC820BE0025C060 /* Class */,
 				9BFC54852BC820B60025C060 /* Views */,
@@ -174,6 +185,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9BFC547A2BC820A90025C060 /* ContentView.swift in Sources */,
+				9B32F1432BC8748400765377 /* fetchBirds.swift in Sources */,
 				9BFC548D2BC83ADC0025C060 /* Bird.swift in Sources */,
 				9BFC548F2BC83B360025C060 /* BirdData.swift in Sources */,
 				9BFC548B2BC829990025C060 /* BirdListView.swift in Sources */,

@@ -1,24 +1,24 @@
-//   Bird.swift
-//   FlyBird
+////   Bird.swift
+////   FlyBird
+////
+////   Created by: Grant Perry on 4/11/24 at 11:35 AM
+////     Modified: 
+////
+////  Copyright © 2024 Delicious Studios, LLC. - Grant Perry
+////
 //
-//   Created by: Grant Perry on 4/11/24 at 11:35 AM
-//     Modified: 
+//import SwiftUI
+//import Observation
 //
-//  Copyright © 2024 Delicious Studios, LLC. - Grant Perry
-//
-
-import SwiftUI
-import Observation
-
-//@Observable
-//class Bird: Decodable, Identifiable {
-//   let id: String?
-//   let speciesCode: String?
+//struct Bird: Decodable, Identifiable {
+//   let id: String
+//   let speciesCode: String
 //   let comName: String
 //   let sciName: String
-//   let locId: String?
+//   let locId: String
 //   let locName: String
 //   let obsDt: Date
+//   // Add other properties you might use from the JSON response here (e.g., howMany)
 //
 //   enum CodingKeys: String, CodingKey {
 //	  case id = "obsId"
@@ -28,9 +28,10 @@ import Observation
 //	  case locId
 //	  case locName
 //	  case obsDt
+//	  // Add keys for other properties if needed
 //   }
 //
-//   required init(from decoder: Decoder) throws {
+//   init(from decoder: Decoder) throws {
 //	  let container = try decoder.container(keyedBy: CodingKeys.self)
 //	  self.id = try container.decode(String.self, forKey: .id)
 //	  self.speciesCode = try container.decode(String.self, forKey: .speciesCode)
@@ -38,24 +39,9 @@ import Observation
 //	  self.sciName = try container.decode(String.self, forKey: .sciName)
 //	  self.locId = try container.decode(String.self, forKey: .locId)
 //	  self.locName = try container.decode(String.self, forKey: .locName)
-//	  self.obsDt = try container.decode(Date.self, forKey: .obsDt)
+//	  let dateString = try container.decode(String.self, forKey: .obsDt)
+//	  let dateFormatter = DateFormatter()
+//	  dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+//	  self.obsDt = dateFormatter.date(from: dateString)! // Force unwrapping assuming valid format (handle potential errors if needed)
 //   }
-//
-////   init(comName: String, sciName: String, locName: String, obsDt: Date) {
-////	  self.comName = comName
-////	  self.sciName = sciName
-////	  self.locName = locName
-////	  self.obsDt = obsDt
-////   }
-//}
-//
-//@Observable
-//class BirdData {
-//   var birds: [Bird] = []
-//
-//   init(birds: [Bird]) {
-//	  self.birds = birds
-//   }
-//
-//   init() { } // Add an empty initializer
 //}

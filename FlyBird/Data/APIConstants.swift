@@ -10,7 +10,7 @@
 import SwiftUI
 
 struct APIConstants {
-   static let eBirdAPIKey_Morgen = "d19r019qfvnn"
-   static let eBirdAPIKey = "d19r019qfvnn"
+   static let eBirdAPIKey = "d19r019qfvnn" // Gp.
+   static let eBirdAPIKey_Morgen = "d19r019qfvnn" // morgen
 }
 
