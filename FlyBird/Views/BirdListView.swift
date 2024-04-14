@@ -10,23 +10,23 @@
 import SwiftUI
 import Observation
 
-struct Bird: Decodable, Identifiable {
-   let id = UUID()
-   let comName: String
-   let sciName: String
-   let locName: String
-   let obsDt: Date // Using Date type
-}
-
-
 //
-//// SwiftUI View
+//struct USState {
+//   let name: String
+//   let abbreviation: String
+//}
+
+
+
+
 struct BirdListView: View {
    @State private var birds: [Bird] = []
    @State private var regionCode = "US-VA"
+   @State private var selectedState: USState?
 
    var body: some View {
 	  VStack {
+		 Spacer()
 		 HStack {
 			Spacer()
 			HStack {
@@ -39,37 +39,72 @@ struct BirdListView: View {
 			}
 			.padding(.trailing)
 		 }
+
 		 List(birds) { bird in
 			VStack(alignment: .leading) {
 			   Text(bird.comName)
 				  .font(.title3)
 				  .foregroundColor(.cyan)
+			}
+			HStack {
+			 Spacer()
+			   VStack(spacing: 0) {
 
-			   HStack {
-				  Text(bird.locName)
+				  Text(bird.sciName)
 					 .font(.caption)
-					 .foregroundColor(.green)
-				  Spacer()
-				  Text(bird.obsDt, style: .date)
-					 .font(.caption)
+					 .foregroundColor(.white)
 			   }
+//			   Spacer()
+			   Text(bird.locName)
+				  .font(.caption)
+				  .foregroundColor(.green)
+			}
+//			Spacer()
+		 }
+	  }
+	  .safeAreaInset(edge: .top, spacing: 0) {
+		 Picker("Select State", selection: $selectedState) {
+			ForEach(states, id: \.abbreviation) { state in
+			   Text(state.name).tag(state as USState?)
 			}
 		 }
-		 .navigationTitle("Birds Today")
+		 .pickerStyle(.menu)
 	  }
 	  .padding(.bottom)
 	  .task {
-		 fetchBirds(regionCode: regionCode) { result in
+		 await updateBirdsForSelectedState()
+	  }
+	  .onChange(of: selectedState) {
+		 Task { await updateBirdsForSelectedState() }
+	  }
+	  .preferredColorScheme(/*@START_MENU_TOKEN@*/.dark/*@END_MENU_TOKEN@*/)
+   }
+
+
+   func updateBirdsForSelectedState() async {
+	  guard let selectedState = selectedState else { return }
+
+	  do {
+		 print("State: US-\(selectedState.abbreviation)")
+		 fetchBirds(regionCode: "US-\(selectedState.abbreviation)") { result in
 			switch result {
 			   case .success(let birds):
-				  self.birds = birds
+
+				  DispatchQueue.main.async {
+					 self.birds = birds
+					 //					 print(birds)
+				  }
+
 			   case .failure(let error):
 				  print("Error fetching birds: \(error)")
 			}
 		 }
+
 	  }
    }
 }
+
+
 
 
 #Preview {

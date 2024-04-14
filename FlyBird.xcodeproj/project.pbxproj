@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9B1D633F2BCACC6800066D30 /* States.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1D633E2BCACC6800066D30 /* States.swift */; };
+		9B1D63412BCC23B300066D30 /* Bird.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1D63402BCC23B300066D30 /* Bird.swift */; };
 		9B32F1432BC8748400765377 /* fetchBirds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B32F1422BC8748400765377 /* fetchBirds.swift */; };
 		9BFC54782BC820A90025C060 /* FlyBirdApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFC54772BC820A90025C060 /* FlyBirdApp.swift */; };
 		9BFC547A2BC820A90025C060 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFC54792BC820A90025C060 /* ContentView.swift */; };
@@ -14,11 +16,12 @@
 		9BFC547F2BC820AA0025C060 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9BFC547E2BC820AA0025C060 /* Preview Assets.xcassets */; };
 		9BFC54892BC820E30025C060 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFC54882BC820E30025C060 /* APIConstants.swift */; };
 		9BFC548B2BC829990025C060 /* BirdListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFC548A2BC829990025C060 /* BirdListView.swift */; };
-		9BFC548D2BC83ADC0025C060 /* Bird.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFC548C2BC83ADC0025C060 /* Bird.swift */; };
 		9BFC548F2BC83B360025C060 /* BirdData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFC548E2BC83B360025C060 /* BirdData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9B1D633E2BCACC6800066D30 /* States.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = States.swift; sourceTree = "<group>"; };
+		9B1D63402BCC23B300066D30 /* Bird.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bird.swift; sourceTree = "<group>"; };
 		9B32F1422BC8748400765377 /* fetchBirds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fetchBirds.swift; sourceTree = "<group>"; };
 		9BFC54742BC820A90025C060 /* FlyBird.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlyBird.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BFC54772BC820A90025C060 /* FlyBirdApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlyBirdApp.swift; sourceTree = "<group>"; };
@@ -27,7 +30,6 @@
 		9BFC547E2BC820AA0025C060 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9BFC54882BC820E30025C060 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		9BFC548A2BC829990025C060 /* BirdListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirdListView.swift; sourceTree = "<group>"; };
-		9BFC548C2BC83ADC0025C060 /* Bird.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bird.swift; sourceTree = "<group>"; };
 		9BFC548E2BC83B360025C060 /* BirdData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirdData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -42,6 +44,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9B1D633D2BCACC5C00066D30 /* Structs */ = {
+			isa = PBXGroup;
+			children = (
+				9B1D633E2BCACC6800066D30 /* States.swift */,
+			);
+			path = Structs;
+			sourceTree = "<group>";
+		};
 		9B32F1412BC8746E00765377 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -53,6 +63,7 @@
 		9BFC546B2BC820A90025C060 = {
 			isa = PBXGroup;
 			children = (
+				9B1D633D2BCACC5C00066D30 /* Structs */,
 				9BFC54762BC820A90025C060 /* FlyBird */,
 				9BFC54752BC820A90025C060 /* Products */,
 			);
@@ -100,7 +111,6 @@
 		9BFC54862BC820BE0025C060 /* Class */ = {
 			isa = PBXGroup;
 			children = (
-				9BFC548C2BC83ADC0025C060 /* Bird.swift */,
 				9BFC548E2BC83B360025C060 /* BirdData.swift */,
 			);
 			path = Class;
@@ -110,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				9BFC54882BC820E30025C060 /* APIConstants.swift */,
+				9B1D63402BCC23B300066D30 /* Bird.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -186,10 +197,11 @@
 			files = (
 				9BFC547A2BC820A90025C060 /* ContentView.swift in Sources */,
 				9B32F1432BC8748400765377 /* fetchBirds.swift in Sources */,
-				9BFC548D2BC83ADC0025C060 /* Bird.swift in Sources */,
+				9B1D633F2BCACC6800066D30 /* States.swift in Sources */,
 				9BFC548F2BC83B360025C060 /* BirdData.swift in Sources */,
 				9BFC548B2BC829990025C060 /* BirdListView.swift in Sources */,
 				9BFC54782BC820A90025C060 /* FlyBirdApp.swift in Sources */,
+				9B1D63412BCC23B300066D30 /* Bird.swift in Sources */,
 				9BFC54892BC820E30025C060 /* APIConstants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
