@@ -21,7 +21,14 @@ struct Bird: Decodable, Identifiable {
    let longitude: Double?
 
    enum CodingKeys: String, CodingKey {
-	  case speciesCode, comName, sciName, locId, locName, obsDt, latitude, longitude
+	  case speciesCode, 
+		   comName,
+		   sciName,
+		   locId,
+		   locName,
+		   obsDt,
+		   latitude,
+		   longitude
 	  case id = "obsId"
    }
 
