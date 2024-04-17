@@ -34,6 +34,10 @@ func fetchBirds(regionCode: String, completion: @escaping (Result<[Bird], Error>
 			let birds = try decoder.decode([Bird].self, from: data)
 			completion(.success(birds))
 		 } catch {
+			 print("Error decoding birds: \(error)")
+			 if let decodingError = error as? DecodingError {
+				 print("Decoding Error Context:", decodingError.localizedDescription)
+			 }
 			completion(.failure(error))
 		 }
 	  }

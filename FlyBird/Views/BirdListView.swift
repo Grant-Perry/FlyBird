@@ -92,7 +92,7 @@ struct BirdListView: View {
 
 				  DispatchQueue.main.async {
 					 self.birds = birds
-					 //					 print(birds)
+//					 					 print(birds)
 				  }
 
 			   case .failure(let error):

@@ -13,7 +13,7 @@ import SwiftUI
 struct FlyBirdApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+			  BirdListView()
         }
     }
 }
