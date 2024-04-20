@@ -9,37 +9,29 @@
 
 import Foundation
 
-func fetchBirds(regionCode: String, completion: @escaping (Result<[Bird], Error>) -> Void) {
+func fetchBirds(regionCode: String) async throws -> [Bird] {
    let apiKey = APIConstants.eBirdAPIKey
 
    var urlComponents = URLComponents(string: "https://api.ebird.org/v2/data/obs/\(regionCode)/recent")!
-   urlComponents.queryItems = [
-	  // Add additional query items if needed
-   ]
+   urlComponents.queryItems = [/* Additional query items if needed */]
+   guard let url = urlComponents.url else {
+	  throw URLError(.badURL)
+   }
 
-   var request = URLRequest(url: urlComponents.url!)
+   var request = URLRequest(url: url)
    request.addValue(apiKey, forHTTPHeaderField: "X-eBirdApiToken")
 
    let dateFormatter = DateFormatter()
-   dateFormatter.dateFormat = "yyyy-MM-dd HH:mm" // Match eBird's date/time format
+   dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+
+   let (data, response) = try await URLSession.shared.data(for: request) // Correctly use the request with the header
+
+   guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+	  throw URLError(.badServerResponse)
+   }
 
    let decoder = JSONDecoder()
    decoder.dateDecodingStrategy = .formatted(dateFormatter)
-
-   URLSession.shared.dataTask(with: request) { (data, response, error) in
-	  if let error = error {
-		 completion(.failure(error))
-	  } else if let data = data {
-		 do {
-			let birds = try decoder.decode([Bird].self, from: data)
-			completion(.success(birds))
-		 } catch {
-			 print("Error decoding birds: \(error)")
-			 if let decodingError = error as? DecodingError {
-				 print("Decoding Error Context:", decodingError.localizedDescription)
-			 }
-			completion(.failure(error))
-		 }
-	  }
-   }.resume()
+   let birds = try decoder.decode([Bird].self, from: data)
+   return birds
 }

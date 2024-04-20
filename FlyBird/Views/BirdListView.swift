@@ -10,17 +10,8 @@
 import SwiftUI
 import Observation
 
-//
-//struct USState {
-//   let name: String
-//   let abbreviation: String
-//}
-
-
-
-
 struct BirdListView: View {
-   @State private var birds: [Bird] = []
+   @State private var birds: [Bird] = [/*  Empty  */]
    @State private var regionCode = "US-VA"
    @State private var selectedState: USState?
 
@@ -41,8 +32,27 @@ struct BirdListView: View {
 		 }
 
 		 List(birds) { bird in
+			HStack {
+			   if let imageUrl = bird.imageUrl {
+				  AsyncImage(url: imageUrl) { image in
+					 image.resizable().scaledToFit()
+						.clipShape(Circle())
+
+				  } placeholder: {
+					 Image("defaultBirdImage").resizable().scaledToFit()
+						.clipShape(Circle())
+
+
+				  }
+				  .frame(width: 125, height: 125)
+			   } else {
+				  Image("defaultBirdImage").resizable().scaledToFit()
+					 .frame(width: 50, height: 50)
+					 .clipShape(Circle())
+			   }
+			}
 			VStack(alignment: .leading) {
-			   Text(bird.comName)
+			   Text(bird.commonName)
 				  .font(.title3)
 				  .foregroundColor(.cyan)
 			}
@@ -69,6 +79,7 @@ struct BirdListView: View {
 			}
 		 }
 		 .pickerStyle(.menu)
+
 	  }
 	  .padding(.bottom)
 	  .task {
@@ -84,24 +95,36 @@ struct BirdListView: View {
    func updateBirdsForSelectedState() async {
 	  guard let selectedState = selectedState else { return }
 
+	  let dateFormatter = DateFormatter()
+	  dateFormatter.dateFormat = "yyyy-MM-dd HH:mm" // Match eBird's date/time format
+
 	  do {
-		 print("State: US-\(selectedState.abbreviation)")
-		 fetchBirds(regionCode: "US-\(selectedState.abbreviation)") { result in
-			switch result {
-			   case .success(let birds):
+		 let birdData = try await fetchBirds(regionCode: "US-\(selectedState.abbreviation)")
+		 birds = birdData // update the birds with the decoded ebird data
 
-				  DispatchQueue.main.async {
-					 self.birds = birds
-//					 					 print(birds)
+//		 print("BIRDS: \(birds)")
+
+		 try await withThrowingTaskGroup(of: Void.self) { taskGroup in
+			for index in birds.indices {
+			   taskGroup.addTask {
+				  print("Fetching: \( birds[index].commonName)")
+				  if let imageUrl = try await fetchImageUrl(forCommonName: wikiFormatBirdName(birds[index].commonName)) {
+					 DispatchQueue.main.async {
+						self.birds[index].imageUrl = imageUrl // Update the specific bird's imageUrl
+					 }
 				  }
-
-			   case .failure(let error):
-				  print("Error fetching birds: \(error)")
+			   }
+			}
+			try await taskGroup.waitForAll()
+			DispatchQueue.main.async {
+			   self.birds = birds // Update the birds array with potentially populated image URLs
 			}
 		 }
-
+	  } catch {
+		 print("Error decoding birds or fetching images: \(error)\nBIRDS: \(birds)")
 	  }
    }
+
 }
 
 
