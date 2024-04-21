@@ -10,7 +10,7 @@
 import Foundation
 
 func fetchBirds(regionCode: String) async throws -> [Bird] {
-   let apiKey = APIConstants.eBirdAPIKey
+   let APIKey = APIConstants.eBirdAPIKey
 
    var urlComponents = URLComponents(string: "https://api.ebird.org/v2/data/obs/\(regionCode)/recent")!
    urlComponents.queryItems = [/* Additional query items if needed */]
@@ -19,12 +19,12 @@ func fetchBirds(regionCode: String) async throws -> [Bird] {
    }
 
    var request = URLRequest(url: url)
-   request.addValue(apiKey, forHTTPHeaderField: "X-eBirdApiToken")
+   request.addValue(APIKey, forHTTPHeaderField: "X-eBirdApiToken")
 
    let dateFormatter = DateFormatter()
    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
 
-   let (data, response) = try await URLSession.shared.data(for: request) // Correctly use the request with the header
+   let (data, response) = try await URLSession.shared.data(for: request) // use the request with the header to include ApiKey
 
    guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
 	  throw URLError(.badServerResponse)
